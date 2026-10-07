@@ -1,0 +1,21 @@
+# Fly.io — https://fly.io
+# Deploy: fly launch (first time) or fly deploy
+app = "geo-brand-evaluator"
+primary_region = "iad"
+
+[build]
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[env]
+  PORT = "8000"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 512

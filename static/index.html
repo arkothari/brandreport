@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Report — AI-Powered Brand Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+<div class="page" role="main">
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1 class="hero-title"><span class="accent">Brand</span> Report</h1>
+    <p class="hero-subtitle">AI-powered brand intelligence across 15 research dimensions</p>
+  </header>
+
+  <!-- Evaluation form -->
+  <section class="surface" aria-label="New brand evaluation">
+    <form id="eval-form" class="form-wrap" novalidate>
+
+      <!-- API status -->
+      <div>
+        <p class="cap-label" style="margin-bottom:.5rem">AI services</p>
+        <div id="health-badges" class="api-status"></div>
+      </div>
+
+      <!-- Fields -->
+      <div class="field-group">
+        <label class="field-label" for="brand-name">Brand name <span class="req">*</span></label>
+        <input type="text" id="brand-name" class="field-input"
+               placeholder="e.g. Notion, Salesforce, Nike" autocomplete="off" required />
+      </div>
+
+      <div class="grid-2col">
+        <div class="field-group">
+          <label class="field-label" for="industry">Industry / category <span class="req">*</span></label>
+          <input type="text" id="industry" class="field-input"
+                 placeholder="e.g. Productivity SaaS, CRM, Athletic Apparel" autocomplete="off" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="market">Market / country <span class="req">*</span></label>
+          <input type="text" id="market" class="field-input"
+                 placeholder="e.g. United States, Global, Southeast Asia" autocomplete="off" required />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="competitors">Known competitors <span class="opt">(optional)</span></label>
+        <input type="text" id="competitors" class="field-input"
+               placeholder="Comma-separated, e.g. Asana, Monday.com, Trello" autocomplete="off" />
+      </div>
+
+      <div class="form-footer">
+        <p class="form-note">Takes 3–5 minutes. Sections appear progressively as research completes.</p>
+        <button type="submit" id="submit-btn" class="btn-primary">
+          Generate report
+        </button>
+      </div>
+
+      <div id="form-error" class="form-error hidden"></div>
+    </form>
+  </section>
+
+  <!-- Previous reports -->
+  <section class="surface" aria-label="Previous reports">
+    <div class="reports-header">
+      <span class="reports-title">Previous reports</span>
+      <button class="btn-ghost" onclick="loadReports()">↻ Refresh</button>
+    </div>
+
+    <div id="reports-loading" class="state-loading">
+      <span class="spinner spinner-dark spinner-lg" style="border-color: var(--token-border-default); border-top-color: var(--token-action-primary);"></span>
+      Loading reports…
+    </div>
+
+    <div id="reports-empty" class="state-empty hidden">
+      <div class="state-icon">📋</div>
+      <p>No reports yet. Generate your first brand evaluation above.</p>
+    </div>
+
+    <div id="reports-table-wrap" class="table-wrap hidden">
+      <table class="reports-table">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Industry</th>
+            <th>Market</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="reports-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
